@@ -1,0 +1,9 @@
+name: NXLTempFly
+version: '0.1'
+main: lt.nxl.TempFly
+api-version: 1.18
+authors: [ Nixelis, kitoxis ]
+description: Simple and Lightweight Temporary Flight plugin
+website: tempfly.nxl.lt
+libraries:
+  - de.exlll:configlib-yaml:4.5.0

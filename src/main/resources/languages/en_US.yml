@@ -1,0 +1,46 @@
+# NXL Temporary Flight Language File
+#
+# Language: English(US)
+# YOU CAN USE MINIMESSAGE FORMATTING HERE. BUT ONLY MINIMESSAGE FORMATTING.
+
+general:
+  prefix: "<gray>[<aqua><b>TempFly</b><gray>]</gray>"
+  noPermission: "%prefix% <red>You do not have permission to run this command!"
+time:
+  days: "days"
+  day: "day"
+  hours: "hours"
+  hour: "hour"
+  minutes: "minutes"
+  minute: "minute"
+  seconds: "seconds"
+  second: "second"
+flight:
+  flightTime: "<aqua>Flight time: <b>%time%</b>"
+  noMoreFlightTime: "%prefix% <red><b>You have run out of flight time!</b>"
+  noFlightTime: "%prefix% <red>You do not have any flight time!"
+  targetNoFlightTime: "%prefix% <red>%target% does not have any flight time!"
+commands:
+  fly:
+    canFly: "%prefix% <green>You can fly now!"
+    cannotFly: "%prefix% <red>You can no longer fly!"
+    targetCanFly: "%prefix% <green>%target% can fly now!"
+    targetCannotFly: "%prefix% <red>%target% can no longer fly!"
+  reload:
+    reloading: "%prefix% <yellow>Reloading settings and messages..."
+    reloaded: "%prefix% <green>Reload completed in %duration% ms."
+  tempFly:
+    invalidAction: "%prefix% <red>Invalid action! Actions: add, subtract, set"
+    invalidTime: "%prefix% <red>Invalid time!"
+    invalidTimeFormat: "%prefix% <red>Invalid time format!"
+    invalidTarget: "%prefix% <red>%target% is either invalid or offline!"
+    notEnoughFlightTime: "%prefix% <red>%target% does not have enough flight time!"
+    added:
+      player: "%prefix% <green>Added %time% to %target%'s flight time! <gray>(%target%'s current flight time: %new_time%)"
+      target: "%prefix% <green>%time% was added to your flight time! <gray>(Your current flight time: %new_time%)"
+    subtracted:
+      player: "%prefix% <green>Subtracted %time% from %target%'s flight time! <gray>(%target%'s current flight time: %new_time%)"
+      target: "%prefix% <green>%time% was subtracted from your flight time! <gray>(Your current flight time: %new_time%)"
+    set:
+      player: "%prefix% <green>Set %target%'s flight time to %time%!"
+      target: "%prefix% <green>Your flight time was set to %time%!"

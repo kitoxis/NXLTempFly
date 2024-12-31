@@ -1,0 +1,46 @@
+# NXL Temporary Flight Language File
+# 
+# Language: Lithuanian(LT)
+# YOU CAN USE MINIMESSAGE FORMATTING HERE. BUT ONLY MINIMESSAGE FORMATTING.
+
+general:
+  prefix: "<gray>[<aqua><b>TempFly</b><gray>]</gray>"
+  noPermission: "%prefix% <red>Neturite teisės naudotis šia komanda!"
+time:
+  days: "dienos"
+  day: "diena"
+  hours: "valandos"
+  hour: "valanda"
+  minutes: "minutės"
+  minute: "minutė"
+  seconds: "sekundės"
+  second: "sekundė"
+flight:
+  flightTime: "<aqua>Skrydžio Laikas: <b>%time%</b>"
+  noMoreFlightTime: "%prefix% <red><b>Jums baigėsi skrydžio laikas!</b>"
+  noFlightTime: "%prefix% <red>Jūs neturite skrydžio laiko!"
+  targetNoFlightTime: "%prefix% <red>%target% neturi skrydžio laiko!"
+commands:
+  fly:
+    canFly: "%prefix% <green>Dabar jūs galite skristi!"
+    cannotFly: "%prefix% <red>Jūs nebegalite skristi!"
+    targetCanFly: "%prefix% <green>Dabar %target% gali skristi!"
+    targetCannotFly: "%prefix% <red>%target% nebegali skristi!"
+  reload:
+    reloading: "%prefix% <yellow>Vykdomas Konfiguracijos ir žinučių perkrovimas..."
+    reloaded: "%prefix% <green>Perkrovimas įvykdytas per %duration% ms."
+  tempFly:
+    invalidAction: "%prefix% <red>Neteisingas veiksmas! Veiksmai: add, subtract, set"
+    invalidTime: "%prefix% <red>Neteisingas laikas!"
+    invalidTimeFormat: "%prefix% <red>Neteisingas laiko formatas!"
+    invalidTarget: "%prefix% <red>%target% yra neaktyvus arba neteisingas!"
+    notEnoughFlightTime: "%prefix% <red>%target% neturi pakankamai skrydžio laiko!"
+    added:
+      player: "%prefix% <green>%time% pridėta prie %target% skrydžio laiko! <gray>(%target% dabartinis skrydžio laikas: %new_time%)"
+      target: "%prefix% <green>%time% buvo pridėta prie jūsų skrydžio laiko! <gray>(Jūsų dabartinis skrydžio laikas: %new_time%)"
+    subtracted:
+      player: "%prefix% <green>%time% atimta nuo %target% skrydžio laiko! <gray>(%target% dabartinis skrydžio laikas: %new_time%)"
+      target: "%prefix% <green>%time% buvo atimta nuo jūsų skrydžio laiko! <gray>(Jūsų dabartinis skrydžio laikas: %new_time%)"
+    set:
+      player: "%prefix% <green>%target% skrydžio laikas buvo nustatytas į %time%!"
+      target: "%prefix% <green>Jūsų skrydžio laikas buvo nustatytas į %time%!"
