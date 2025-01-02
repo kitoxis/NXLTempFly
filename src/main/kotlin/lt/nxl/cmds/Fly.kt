@@ -194,7 +194,7 @@ class Fly {
                         val startTime = System.currentTimeMillis()
 
                         Settings.reload()
-                        LM.i().getAll()
+                        LM.i().reloadLocales()
 
                         val endTime = System.currentTimeMillis()
                         val duration = endTime - startTime

@@ -41,8 +41,6 @@ class TempFly : JavaPlugin() {
         log("<gradient:blue:green>NXLTempFly</gradient> <gray>|</gray> <green>Enabling...")
         CommandAPI.onLoad(CommandAPIBukkitConfig(instance))
         CommandAPI.onEnable()
-        Settings.i()
-        LM.i().loadLocales()
         this.server.pluginManager.registerEvents(OnFlight(), this)
         Fly.load()
         log("<gradient:blue:green>NXLTempFly</gradient> <gray>|</gray> <green>Enabled!")
