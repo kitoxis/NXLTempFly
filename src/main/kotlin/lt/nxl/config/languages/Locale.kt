@@ -1,10 +1,10 @@
 package lt.nxl.config.languages
 
 import de.exlll.configlib.Configuration
-import de.exlll.configlib.NameFormatters
 import de.exlll.configlib.YamlConfigurationProperties
 import de.exlll.configlib.YamlConfigurations
-import lt.nxl.config.Settings
+import lt.nxl.TempFly
+import lt.nxl.config.languages.LM.Companion.instance
 import java.io.File
 import java.nio.charset.StandardCharsets
 

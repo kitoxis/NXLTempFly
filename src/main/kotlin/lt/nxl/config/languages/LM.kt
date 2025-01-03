@@ -1,12 +1,11 @@
 package lt.nxl.config.languages
 
-import de.exlll.configlib.YamlConfigurationProperties
 import de.exlll.configlib.YamlConfigurations
 import lt.nxl.TempFly
 import lt.nxl.config.Settings
+import lt.nxl.config.Settings.Companion
 import lt.nxl.config.Settings.Companion.PROPERTIES
 import java.io.File
-import java.nio.charset.StandardCharsets
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
