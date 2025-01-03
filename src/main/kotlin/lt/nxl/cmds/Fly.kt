@@ -9,6 +9,7 @@ import lt.nxl.funs.DeCombinedTime
 import lt.nxl.TempFly
 import lt.nxl.config.Settings
 import lt.nxl.config.languages.LM
+import lt.nxl.config.languages.Locale
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
@@ -194,7 +195,7 @@ class Fly {
                         val startTime = System.currentTimeMillis()
 
                         Settings.reload()
-                        LM.i().reloadLocales()
+                        LM.i().loadLocales()
 
                         val endTime = System.currentTimeMillis()
                         val duration = endTime - startTime

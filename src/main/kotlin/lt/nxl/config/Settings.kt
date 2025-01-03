@@ -12,8 +12,8 @@ class Settings {
         var instance: Settings? = null
 
         val CONFIG_HEADER: String = """
-            # NXLTempFly configuration file
-            # Settings file
+            NXLTempFly configuration file
+            Settings file
             
             """.trimIndent()
 

@@ -94,12 +94,15 @@ class Locale {
 
         private val PROPERTIES: YamlConfigurationProperties = YamlConfigurationProperties.newBuilder()
             .charset(StandardCharsets.UTF_8)
-            .setNameFormatter(NameFormatters.LOWER_KEBAB_CASE)
             .header(CONFIG_HEADER).build()
 
         fun get(localeCode: String): Locale {
             val file = File(LM.FOLDER, "$localeCode.yml").toPath()
-            return YamlConfigurations.update(file, Locale::class.java, PROPERTIES)
+            return if (file.toFile().exists()) {
+                YamlConfigurations.load(file, Locale::class.java, PROPERTIES)
+            } else {
+                YamlConfigurations.update(file, Locale::class.java, PROPERTIES)
+            }
         }
     }
 }
