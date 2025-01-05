@@ -88,7 +88,6 @@ class Locale {
         private val CONFIG_HEADER = """
             NXL Temporary Flight Language File
             
-            Language: English (US)
             YOU CAN USE MINIMESSAGE FORMATTING HERE. BUT ONLY MINIMESSAGE FORMATTING.
             """.trimIndent()
 

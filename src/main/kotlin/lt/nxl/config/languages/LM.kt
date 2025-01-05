@@ -63,6 +63,10 @@ class LM {
             ?: return getOverride(DEFAULT).orElseThrow { NullPointerException("Who removed the english locale?") }
         return locale
     }
+    fun reload() {
+        locales.clear()
+        loadLocales()
+    }
 
     fun getOverride(localeName: String): Optional<Locale> {
         return Optional.ofNullable(locales[localeName])
