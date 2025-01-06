@@ -28,32 +28,32 @@ class Fly {
                 .withArguments(arguments)
                 .withArguments(PlayerArgument("player"))
                 .withArguments(GreedyStringArgument("time"))
-                .executesPlayer(
-                    PlayerCommandExecutor { player, args ->
+                .executes(
+                    CommandExecutor { player, args ->
                         if (!player.hasPermission(Settings.i().permissions.tempfly_admin)) {
                             var message = LM.i().getLocale().general.noPermission
                             message = message.replace("%prefix%", LM.i().getLocale().general.prefix)
                             player.sendMessage(Color.format(message))
-                            return@PlayerCommandExecutor
+                            return@CommandExecutor
                         }
                         if (!(args.get("action") == "set" || args.get("action") == "add" || args.get("action") == "subtract")) {
                             var message = LM.i().getLocale().commands.tempFly.invalidAction
                             message = message.replace("%prefix%", LM.i().getLocale().general.prefix)
                             player.sendMessage(Color.format(message))
-                            return@PlayerCommandExecutor
+                            return@CommandExecutor
                         }
                         if (args.get("time") == "0") {
                             var message = LM.i().getLocale().commands.tempFly.invalidTime
                             message = message.replace("%prefix%", LM.i().getLocale().general.prefix)
                             player.sendMessage(Color.format(message))
-                            return@PlayerCommandExecutor
+                            return@CommandExecutor
                         }
                         if (args.get("player") == null) {
                             var message = LM.i().getLocale().commands.tempFly.invalidTarget
                             message = message.replace("%prefix%", LM.i().getLocale().general.prefix)
                             message = message.replace("%target%", args.get("player").toString())
                             player.sendMessage(Color.format(message))
-                            return@PlayerCommandExecutor
+                            return@CommandExecutor
                         }
                         val time = args.get("time") as String
                         val target = args.get("player") as Player
@@ -64,7 +64,7 @@ class Fly {
                             var message = LM.i().getLocale().commands.tempFly.invalidTimeFormat
                             message = message.replace("%prefix%", LM.i().getLocale().general.prefix)
                             player.sendMessage(Color.format(message))
-                            return@PlayerCommandExecutor
+                            return@CommandExecutor
                         }
                         val deParsedTime = DeCombinedTime.deparseCombinedTime(parsedTime)
                         val oldFlightTime = TempFly.getFlightTime(target)
@@ -73,7 +73,7 @@ class Fly {
                             message = message.replace("%prefix%", LM.i().getLocale().general.prefix)
                             message = message.replace("%target%", target.name)
                             player.sendMessage(Color.format(message))
-                            return@PlayerCommandExecutor
+                            return@CommandExecutor
                         }
 
                         when (action) {
@@ -112,41 +112,48 @@ class Fly {
                 .register()
             CommandAPICommand(Settings.i().commands.fly)
                 .withOptionalArguments(PlayerArgument("target"))
-                .executesPlayer(
-                    PlayerCommandExecutor { player, args ->
+                .executes(
+                    CommandExecutor { player, args ->
                         if (args.get("target") == null) {
-                            if (!player.hasPermission(Settings.i().permissions.toggle_flight)) {
-                                var message = LM.i().getLocale().general.noPermission
+                            if (player is Player) {
+                                if (!player.hasPermission(Settings.i().permissions.tempfly_reload)) {
+                                    var message = LM.i().getLocale().general.noPermission
+                                    message = message.replace("%prefix%", LM.i().getLocale().general.prefix)
+                                    player.sendMessage(Color.format(message))
+                                    return@CommandExecutor
+                                }
+                                if (TempFly.getFlightTime(player) <= 0) {
+                                    var message = LM.i().getLocale().flight.noFlightTime
+                                    message = message.replace("%prefix%", LM.i().getLocale().general.prefix)
+                                    player.sendMessage(Color.format(message))
+                                    player.isFlying = false
+                                    player.allowFlight = false
+                                    return@CommandExecutor
+                                }
+                                player.allowFlight = !player.allowFlight
+                                if (player.allowFlight) {
+                                    var message = LM.i().getLocale().commands.fly.canFly
+                                    message = message.replace("%prefix%", LM.i().getLocale().general.prefix)
+                                    player.sendMessage(Color.format(message))
+                                } else {
+                                    var message = LM.i().getLocale().commands.fly.cannotFly
+                                    message = message.replace("%prefix%", LM.i().getLocale().general.prefix)
+                                    player.sendMessage(Color.format(message))
+                                }
+                                return@CommandExecutor
+                            }else {
+                                var message = LM.i().getLocale().commands.fly.consoleCannotFly
                                 message = message.replace("%prefix%", LM.i().getLocale().general.prefix)
                                 player.sendMessage(Color.format(message))
-                                return@PlayerCommandExecutor
+                                return@CommandExecutor
                             }
-                            if (TempFly.getFlightTime(player) <= 0) {
-                                var message = LM.i().getLocale().flight.noFlightTime
-                                message = message.replace("%prefix%", LM.i().getLocale().general.prefix)
-                                player.sendMessage(Color.format(message))
-                                player.isFlying = false
-                                player.allowFlight = false
-                                return@PlayerCommandExecutor
-                            }
-                            player.allowFlight = !player.allowFlight
-                            if (player.allowFlight) {
-                                var message = LM.i().getLocale().commands.fly.canFly
-                                message = message.replace("%prefix%", LM.i().getLocale().general.prefix)
-                                player.sendMessage(Color.format(message))
-                            } else {
-                                var message = LM.i().getLocale().commands.fly.cannotFly
-                                message = message.replace("%prefix%", LM.i().getLocale().general.prefix)
-                                player.sendMessage(Color.format(message))
-                            }
-                            return@PlayerCommandExecutor
                         }
                         val target = args.get("target") as Player
                         if (!player.hasPermission(Settings.i().permissions.toggle_flight_other)) {
                             var message = LM.i().getLocale().general.noPermission
                             message = message.replace("%prefix%", LM.i().getLocale().general.prefix)
                             player.sendMessage(Color.format(message))
-                            return@PlayerCommandExecutor
+                            return@CommandExecutor
                         }
                         if (TempFly.getFlightTime(target) <= 0) {
                             var message = LM.i().getLocale().flight.targetNoFlightTime
@@ -155,7 +162,7 @@ class Fly {
                             player.sendMessage(Color.format(message))
                             target.isFlying = false
                             target.allowFlight = false
-                            return@PlayerCommandExecutor
+                            return@CommandExecutor
                         }
                         target.allowFlight = !target.allowFlight
                         if (target.allowFlight) {

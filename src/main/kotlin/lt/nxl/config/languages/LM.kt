@@ -1,10 +1,7 @@
 package lt.nxl.config.languages
 
-import de.exlll.configlib.YamlConfigurations
 import lt.nxl.TempFly
 import lt.nxl.config.Settings
-import lt.nxl.config.Settings.Companion
-import lt.nxl.config.Settings.Companion.PROPERTIES
 import java.io.File
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
@@ -29,7 +26,9 @@ class LM {
 
 
     init {
-        if (!FOLDER.exists()) FOLDER.mkdir()
+        if (!FOLDER.exists()) {
+            FOLDER.mkdirs()
+        }
         loadDefault()
         loadLocales()
     }

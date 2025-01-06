@@ -24,6 +24,7 @@ commands:
   fly:
     canFly: "%prefix% <green>You can fly now!"
     cannotFly: "%prefix% <red>You can no longer fly!"
+    consoleCannotFly: "%prefix% <red>You cannot run this command from the console!"
     targetCanFly: "%prefix% <green>%target% can fly now!"
     targetCannotFly: "%prefix% <red>%target% can no longer fly!"
   reload:

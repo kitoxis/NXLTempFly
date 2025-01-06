@@ -3,8 +3,6 @@ package lt.nxl.config.languages
 import de.exlll.configlib.Configuration
 import de.exlll.configlib.YamlConfigurationProperties
 import de.exlll.configlib.YamlConfigurations
-import lt.nxl.TempFly
-import lt.nxl.config.languages.LM.Companion.instance
 import java.io.File
 import java.nio.charset.StandardCharsets
 
@@ -67,6 +65,7 @@ class Locale {
         class Fly {
             var canFly: String = "%prefix% <green>You can fly now!"
             var cannotFly: String = "%prefix% <red>You can no longer fly!"
+            var consoleCannotFly: String = "%prefix% <red>You cannot run this command from the console!"
             var targetCanFly: String = "%prefix% <green>%target% can fly now!"
             var targetCannotFly: String = "%prefix% <red>%target% can no longer fly!"
         }
@@ -97,11 +96,7 @@ class Locale {
 
         fun get(localeCode: String): Locale {
             val file = File(LM.FOLDER, "$localeCode.yml").toPath()
-            return if (file.toFile().exists()) {
-                YamlConfigurations.load(file, Locale::class.java, PROPERTIES)
-            } else {
-                YamlConfigurations.update(file, Locale::class.java, PROPERTIES)
-            }
+            return YamlConfigurations.load(file, Locale::class.java, PROPERTIES)
         }
     }
 }

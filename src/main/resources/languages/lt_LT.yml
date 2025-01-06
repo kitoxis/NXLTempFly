@@ -24,6 +24,7 @@ commands:
   fly:
     canFly: "%prefix% <green>Dabar jūs galite skristi!"
     cannotFly: "%prefix% <red>Jūs nebegalite skristi!"
+    consoleCannotFly: "%prefix% <red>Negalite naudoti šios komandos konsolėje!"
     targetCanFly: "%prefix% <green>Dabar %target% gali skristi!"
     targetCannotFly: "%prefix% <red>%target% nebegali skristi!"
   reload:
